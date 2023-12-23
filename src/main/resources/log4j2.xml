@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Configuration>
+<!--
+관련문서: 
+http://logging.apache.org/log4j/2.x/manual/appenders.html#RollingFileAppender
+http://logging.apache.org/log4j/2.x/manual/layouts.html#PatternLayout
+
+  -->
+    <Appenders>
+        <Console name="console" target="SYSTEM_OUT">
+            <PatternLayout pattern="%d %5p [%c] %m%n" />
+        </Console>
+	    <RollingFile name="RollingFile" fileName="c:/logger/app.log"
+	                filePattern="c:/logger/$${date:yyyy-MM}/app-%d{MM-dd-yyyy}-%i.log.gz">
+	     <PatternLayout>
+	     <!--		     
+		     PatternLayout: 로그의 출력형식
+			%d{DEFAULT}->날짜 ex:2012-11-02 14:34:02,123
+			%p->로그레벨 ex:INFO 
+			%c{1.}->로그가 사용된 클래스이름을 출력 ex:org.apache.commons.Foo
+			클래스정보를 요약 출력 o.a.c.Foo
+			%t->로그를 생성한 Thread이름을 출력
+			%m->로그에 전달된 메시지 출력
+			%n->개행
+	      -->
+	       <Pattern>%d %p %c{1.} [%t] %m%n</Pattern>
+	     </PatternLayout>
+	     <Policies>
+	       <TimeBasedTriggeringPolicy interval="24" modulate="true"/>
+	       <SizeBasedTriggeringPolicy size="20 MB"/>
+	     </Policies>
+	   </RollingFile>
+    </Appenders>
+    <Loggers>
+        <Logger name="java.sql" level="INFO" additivity="false">
+            <AppenderRef ref="console" />
+            <AppenderRef ref="RollingFile" />
+        </Logger>
+        <Logger name="egovframework" level="DEBUG" additivity="false">
+            <AppenderRef ref="console" />
+            <AppenderRef ref="RollingFile" />
+        </Logger>
+          <!-- log SQL with timing information, post execution -->
+        <Logger name="jdbc.sqltiming" level="INFO" additivity="false">
+            <AppenderRef ref="console" />
+           	<AppenderRef ref="RollingFile" />
+        </Logger>
+        <Logger name="org.springframework" level="INFO" additivity="false">
+            <AppenderRef ref="console" />
+            <AppenderRef ref="RollingFile" />
+        </Logger>
+        <Root level="INFO">
+            <AppenderRef ref="console" />
+            <AppenderRef ref="RollingFile" />
+        </Root>
+    </Loggers>
+</Configuration>

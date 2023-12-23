@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="egov.mainysw.dao.MainDAO">
+
+	<resultMap type="java.util.HashMap" id="oracleResultMap"></resultMap>
+	
+	<select id="selectMain" statementType="CALLABLE" resultType="java.util.HashMap" parameterType="java.util.HashMap">
+		SELECT
+		USER_ID AS USER_ID
+		FROM EGOV_USER
+		WHERE
+		ROWNUM =1
+	</select>
+	<select id="selectLoginYsw" statementType="CALLABLE" resultType="java.util.HashMap" parameterType="java.util.HashMap">
+	SELECT
+	USER_ID AS USER_ID
+	FROM EGOV_USER
+	WHERE 1=1
+	<if test='userIdYsw != null and userIdYsw != ""'>
+	AND USER_ID = #{userIdYsw}
+	</if>
+	</select>
+	
+	
+	<select id="selectLogin2" statementType="CALLABLE" resultType="java.util.HashMap" parameterType="java.util.HashMap">
+	{CALL web_main.selectLogin(#{userIdYsw},#{ref_cursor, mode=OUT, jdbcType=CURSOR, javaType=ResultSet, resultMap=oracleResultMap})}
+	</select>
+
+	
+	
+</mapper>
