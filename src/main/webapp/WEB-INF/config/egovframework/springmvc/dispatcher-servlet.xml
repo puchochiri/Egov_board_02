@@ -80,34 +80,6 @@
 	<aop:aspectj-autoproxy/>
 
 	
-		<!-- Aspect 설정 첫번째 방법 -->
-		<!-- <aop:config>
-			<aop:aspect ref="exampleAop">
-				<aop:pointcut id="targetExample"
-					expression="execution(* egov.**.web.*Controller.*(..))" />
-				핵심기능 실행하기전에
-				pointcut 참조
-				<aop:before pointcut-ref="targetExample" method="beforeMethod" />
-				오류가 발생한 후에 동작하는 함수
-				<aop:after-throwing pointcut-ref="targetExample"
-					method="exceptionMethod" throwing="exception" />
-			</aop:aspect>
-	
-			<aop:aspect ref="exampleAop">
-				<aop:pointcut id="targetExample2"
-					expression="execution(* egov.**.web.*Controller.*(..))" />
-				<aop:after pointcut-ref="targetExample2" method="afterMethod" />
-			</aop:aspect>
-	
-			<aop:aspect ref="exampleAop">
-				<aop:pointcut id="targetExample3"
-					expression="execution(* egov.**.web.*Controller.*(..))" />
-					<aop:around pointcut-ref="targetExample3" method="aroundMethod" />
-			</aop:aspect>
-	
-		</aop:config> -->
-		
-    <!-- /AOP -->
 
     
     
