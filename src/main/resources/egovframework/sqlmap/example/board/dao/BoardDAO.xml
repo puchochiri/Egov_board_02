@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="egov.example.board.dao.BoardDAO">
+
+	<select id="selectBoard" parameterType="map" resultType="map">
+		SELECT
+		BORDERID,
+		BORDERTYPE,
+		GROUP_NUM,
+		PARENTID,
+		GROUP_ORDER,
+		GROUP_TAB,
+		USERID,
+		NICKNAME,
+		WRITEDAY,
+		WRITERIP,
+		EDITID,
+		EDITIP,
+		TITLE,
+		BORDERTEXT,
+		SEECOUNT,
+		FILENAME,
+		FILETYPE,
+		FILEURL,
+		REPLYCOUNT
+	FROM
+		EGOV_BBS
+	</select>
+	
+	<insert id="insertBoard" parameterType="map">
+		INSERT
+			INTO
+			EGOV_BBS
+		(BORDERID,
+			BORDERTYPE,
+			GROUP_NUM,
+			PARENTID,
+			GROUP_ORDER,
+			GROUP_TAB,
+			USERID,
+			NICKNAME,
+			WRITEDAY,
+			WRITERIP,
+			EDITID,
+			EDITIP,
+			TITLE,
+			BORDERTEXT,
+			SEECOUNT,
+			FILENAME,
+			FILETYPE,
+			FILEURL,
+			REPLYCOUNT)
+		VALUES(borderid_seq.nextval,
+		 #{boardType},
+		#{groupNum},
+		#{parentId},
+		#{groupOrder},
+		#{groupTab},
+		#{userId},
+		#{nickName},
+		#{writeDay},
+		#{writerIp},
+		#{editId},
+		#{editIp},
+		#{title},
+		#{borderText},
+		#{seeCount},
+		#{fileName},
+		#{fileType},
+		#{fileUrl},
+		#{replyCount}
+		)
+	
+	
+	</insert>
+
+</mapper>

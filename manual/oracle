@@ -4,3 +4,99 @@ CREATE TABLE EGOV_USER (
     CONSTRAINT PK_USER PRIMARY KEY (USER_ID)
 
 );
+
+
+CREATE TABLE EGOV_BBS (	
+    borderid NUMBER(10,0),
+    bordertype VARCHAR2(1 BYTE),
+    group_num NUMBER(10,0) DEFAULT 0,
+    parentid NUMBER(10,0) DEFAULT 0,
+    group_order NUMBER(10,0) DEFAULT 0,
+    group_tab NUMBER(10,0)  DEFAULT 0,
+    userid VARCHAR2(255 BYTE),
+    nickname VARCHAR2(255 BYTE),
+    writeday DATE DEFAULT sysdate,
+    writerip VARCHAR2(16),
+    editid VARCHAR2(255 BYTE),
+    editip VARCHAR2(16),
+    title VARCHAR2(30),
+    bordertext VARCHAR2(4000),
+    seecount NUMBER(10,0) DEFAULT 0,
+    filename VARCHAR(250),
+    filetype VARCHAR(30),
+    fileurl VARCHAR(250),
+    replycount NUMBER(10,0) DEFAULT 0,
+    CONSTRAINT PK_BBS PRIMARY KEY(borderid)
+);
+
+create sequence borderid_seq;
+
+commit;
+
+
+SELECT
+	BORDERID,
+	BORDERTYPE,
+	GROUP_NUM,
+	PARENTID,
+	GROUP_ORDER,
+	GROUP_TAB,
+	USERID,
+	NICKNAME,
+	WRITEDAY,
+	WRITERIP,
+	EDITID,
+	EDITIP,
+	TITLE,
+	BORDERTEXT,
+	SEECOUNT,
+	FILENAME,
+	FILETYPE,
+	FILEURL,
+	REPLYCOUNT
+FROM
+	SCOTT.EGOV_BBS;
+
+
+
+INSERT
+	INTO
+	EGOV_BBS
+(BORDERID,
+	BORDERTYPE,
+	GROUP_NUM,
+	PARENTID,
+	GROUP_ORDER,
+	GROUP_TAB,
+	USERID,
+	NICKNAME,
+	WRITEDAY,
+	WRITERIP,
+	EDITID,
+	EDITIP,
+	TITLE,
+	BORDERTEXT,
+	SEECOUNT,
+	FILENAME,
+	FILETYPE,
+	FILEURL,
+	REPLYCOUNT)
+VALUES(borderid_seq.nextval,
+'1',
+1,
+1,
+1,
+1,
+'test123',
+'test123',
+sysdate,
+'112.165.195',
+'test123',
+'112.165.195',
+'testtesttitle',
+'content',
+5,
+'filename',
+'filetype',
+'fileurl',
+5);
